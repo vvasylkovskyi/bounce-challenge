@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html, body, .main-container__wrapper, .main-container {
+  height: 100%;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
