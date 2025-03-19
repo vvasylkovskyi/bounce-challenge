@@ -2,7 +2,7 @@
 
 ![Hero Image](/public/favicon.ico)
 
-A booking web application built with **Next.js** and **React**. This project is an interview exercies
+A booking web application built with **Next.js** and **React**. This project is an interview exercies. You can visit the app [here - https://bounce-challenge.vercel.app/](https://bounce-challenge.vercel.app/).
 
 ## Prerequisites
 
