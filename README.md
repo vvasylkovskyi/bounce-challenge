@@ -21,6 +21,12 @@ Use nvm (Node Version Manager) to switch to the correct Node.js version specifie
 nvm use
 ```
 
+### Install pnpm
+
+```bash
+npm install -g pnpm
+```
+
 ### Install Dependencies
 
 ```bash
