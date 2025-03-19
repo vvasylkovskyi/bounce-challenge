@@ -3,25 +3,14 @@ import { GenericResponse, TotalPriceResponse } from "@/types/types";
 const baseUrl = "https://fullstack-challenge-api.usebounce.io/v1/pricing/calculate";
 const pricePerBag = 59;
 
-
-
 export async function GET(request: Request) {
   try {
-    const headers = {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-    };
 
     const url = new URL(request.url); 
     const params = new URLSearchParams(url.search); 
 
-
     const result = await fetch(
         `${baseUrl}?base_price=${pricePerBag}&quantity=${params.get("numberOfBags") ?? 0}&store_capacity=5`,
-        {
-          headers,
-          method: "GET",
-        }
     );
 
     const data: GenericResponse<TotalPriceResponse> = await result.json();
