@@ -42,7 +42,7 @@ body {
   justify-content: space-between;
   flex-direction: column;
   width: 100%;
-  height: 100vh;  
+  height: 100%;  
   max-width: 500px;
 
   &__title-wrapper {
@@ -54,7 +54,14 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding-top: var(--content-padding-top);
+    
+    @media (min-width: 575px) {
+      padding-top: var(--content-padding-top);
+    }
+  }
+
+  @media (min-width: 575px) {
+    height: 100vh;  
   }
 }
 
