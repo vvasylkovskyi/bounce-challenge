@@ -1,15 +1,15 @@
 import { useTotalPrice } from "@packages/hooks/useTotalPrice";
+import {
+  CheckoutSummaryContainerWeb,
+  CheckoutSummaryInnerContainerWeb,
+  CheckoutSummaryOuterContainerWeb,
+  ErrorContainerTextWeb,
+  ErrorContainerWeb,
+  GenericButtonWeb,
+  GenericButtonWrapperWeb,
+} from "@packages/ui-components-web";
 import { useEffect, useState } from "react";
 import { View } from "react-native";
-import {
-  CheckoutSummaryContainer,
-  CheckoutSummaryInnerContainer,
-  CheckoutSummaryOuterContainer,
-  ErrorContainer,
-  ErrorContainerText,
-  GenericButton,
-  GenericButtonWrapper,
-} from "./styles/styles";
 
 function toDecimalString(num: number): string {
   return (num / 100).toFixed(2).replace(".", ",");
@@ -70,25 +70,25 @@ export const CheckoutSummaryComponent = ({
   }
 
   return (
-    <CheckoutSummaryOuterContainer>
+    <CheckoutSummaryOuterContainerWeb>
       {errorMessage && (
-        <ErrorContainer>
-          <ErrorContainerText>{errorMessage}</ErrorContainerText>
-        </ErrorContainer>
+        <ErrorContainerWeb>
+          <ErrorContainerTextWeb>{errorMessage}</ErrorContainerTextWeb>
+        </ErrorContainerWeb>
       )}
 
-      <CheckoutSummaryContainer>
-        <CheckoutSummaryInnerContainer>
+      <CheckoutSummaryContainerWeb>
+        <CheckoutSummaryInnerContainerWeb>
           <View style={{ width: "100%", marginBottom: 16 }}>
-            <GenericButtonWrapper
-              onPress={onBook}
+            <GenericButtonWrapperWeb
+              onClick={onBook}
               isDisabled={isLoading || Boolean(errorDetail) || isSubmitting}
             >
-              <GenericButton>{buttonContent}</GenericButton>
-            </GenericButtonWrapper>
+              <GenericButtonWeb>{buttonContent}</GenericButtonWeb>
+            </GenericButtonWrapperWeb>
           </View>
-        </CheckoutSummaryInnerContainer>
-      </CheckoutSummaryContainer>
-    </CheckoutSummaryOuterContainer>
+        </CheckoutSummaryInnerContainerWeb>
+      </CheckoutSummaryContainerWeb>
+    </CheckoutSummaryOuterContainerWeb>
   );
 };

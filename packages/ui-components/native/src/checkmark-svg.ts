@@ -1,7 +1,7 @@
 
+import { background, colorSuccess } from "@packages/ui-components-base-styles/src/styles/styles-constants";
 import Svg, { Circle, Path } from "react-native-svg";
 import styled from "styled-components/native";
-import { background, colorSuccess } from "./styles-constants";
 
 export const CheckmarkContainer = styled.View`
     display: flex;

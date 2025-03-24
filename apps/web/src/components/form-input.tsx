@@ -1,5 +1,9 @@
-import { Text, View } from "react-native";
-import { ErrorContainerText, TextInputComponent } from "./styles/styles";
+import {
+  ErrorContainerTextWeb,
+  GenericTextWeb,
+  GenericViewWeb,
+  TextInputComponentWeb,
+} from "@packages/ui-components-web";
 
 type FormInputProps = {
   title: string;
@@ -19,20 +23,17 @@ export const FormInput = ({
   errorMessage,
 }: FormInputProps) => {
   return (
-    <View>
-      <Text>{title}</Text>
-      <TextInputComponent
+    <GenericViewWeb>
+      <GenericTextWeb>{title}</GenericTextWeb>
+      <TextInputComponentWeb
         placeholder={title}
         value={value}
-        onChangeText={onChange}
-        isDirty={isDirty}
-        isValid={isValid}
-        errorMessage={errorMessage}
+        onChange={(e) => onChange(e.target.value)}
         hasError={isDirty && !isValid}
       />
       {isDirty && !isValid && (
-        <ErrorContainerText>{errorMessage}</ErrorContainerText>
+        <ErrorContainerTextWeb>{errorMessage}</ErrorContainerTextWeb>
       )}
-    </View>
+    </GenericViewWeb>
   );
 };

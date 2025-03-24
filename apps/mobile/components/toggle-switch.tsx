@@ -1,6 +1,11 @@
+import {
+  GenericTextNative,
+  SwitchContainerNative,
+  ThumbNative,
+  ToggleSwitchComponentNative,
+} from "@packages/ui-components-native";
 import React, { useRef } from "react";
-import { Animated, Text } from "react-native";
-import { SwitchContainer, Thumb, ToggleSwitchComponent } from "./styles/styles";
+import { Animated } from "react-native";
 
 type ToggleSwitchProps = {
   label: string;
@@ -27,17 +32,15 @@ export const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
   };
 
   return (
-    <ToggleSwitchComponent>
-      <Text>{label}</Text>
-      <SwitchContainer
+    <ToggleSwitchComponentNative>
+      <GenericTextNative>{label}</GenericTextNative>
+      <SwitchContainerNative
         isOn={isToggled}
         onPress={toggleSwitch}
         activeOpacity={0.8}
       >
-        <Thumb style={{ transform: [{ translateX }] }} />
-      </SwitchContainer>
-    </ToggleSwitchComponent>
+        <ThumbNative style={{ transform: [{ translateX }] }} />
+      </SwitchContainerNative>
+    </ToggleSwitchComponentNative>
   );
 };
-
-export default ToggleSwitch;

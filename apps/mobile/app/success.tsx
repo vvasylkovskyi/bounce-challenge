@@ -1,23 +1,21 @@
 import {
-  GenericButton,
-  GenericButtonWrapper,
-  MainContainerSuccess,
-  SuccessContainerTitleWrapper,
-  SuccessSubtitle,
-  SuccessTitle,
-} from "@packages/ui-components";
-import {
   CheckmarkContainer,
   CheckmarkSvg,
   CheckmarkSvgCircle,
   CheckmarkSvgPath,
-} from "@packages/ui-components/src/styles/checkmark-svg";
+  GenericButtonNative,
+  GenericButtonWrapperNative,
+  MainContainerSuccessNative,
+  SuccessContainerTitleWrapperNative,
+  SuccessSubtitleNative,
+  SuccessTitleNative,
+} from "@packages/ui-components-native";
 
 import { router } from "expo-router";
 
-export default function Success() {
+export default function Index() {
   return (
-    <MainContainerSuccess>
+    <MainContainerSuccessNative>
       <CheckmarkContainer>
         <CheckmarkSvg>
           <CheckmarkSvgCircle />
@@ -25,20 +23,21 @@ export default function Success() {
         </CheckmarkSvg>
       </CheckmarkContainer>
 
-      <SuccessContainerTitleWrapper>
-        <SuccessTitle style={{ textAlign: "center" }}>
+      <SuccessContainerTitleWrapperNative>
+        <SuccessTitleNative style={{ textAlign: "center" }}>
           Success! Your Booking Has Been Successfully Placed
-        </SuccessTitle>
-        <SuccessSubtitle style={{ marginTop: 8, textAlign: "center" }}>
+        </SuccessTitleNative>
+        <SuccessSubtitleNative style={{ marginTop: 8, textAlign: "center" }}>
           You can return to the homepage and start again anytime.
-        </SuccessSubtitle>
-        <GenericButtonWrapper
+        </SuccessSubtitleNative>
+        <GenericButtonWrapperNative
           style={{ marginTop: 16 }}
           onPress={() => router.back()}
+          isDisabled={false}
         >
-          <GenericButton>Return to Homepage</GenericButton>
-        </GenericButtonWrapper>
-      </SuccessContainerTitleWrapper>
-    </MainContainerSuccess>
+          <GenericButtonNative>Return to Homepage</GenericButtonNative>
+        </GenericButtonWrapperNative>
+      </SuccessContainerTitleWrapperNative>
+    </MainContainerSuccessNative>
   );
 }

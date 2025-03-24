@@ -1,14 +1,14 @@
 "use client";
 
 import { FormInputItemState } from "@packages/types";
-import { Text } from "react-native";
-import { FormInput } from "./form-input";
 import {
-  PaymentInformationContainer,
-  PaymentInformationInnerContainer,
-  PersonalDetailsContainer,
-  PersonalDetailsInnerContainer,
-} from "./styles/styles";
+  GenericTextNative,
+  PaymentInformationContainerNative,
+  PaymentInformationInnerContainerNative,
+  PersonalDetailsContainerNative,
+  PersonalDetailsInnerContainerNative,
+} from "@packages/ui-components-native";
+import { FormInput } from "./form-input";
 
 type InputFormComponentProps = {
   name: FormInputItemState;
@@ -29,9 +29,11 @@ export const InputFormComponent = ({
 }: InputFormComponentProps) => {
   return (
     <>
-      <PersonalDetailsContainer>
-        <PersonalDetailsInnerContainer>
-          <Text style={{ fontWeight: "600" }}>Personal Details:</Text>
+      <PersonalDetailsContainerNative>
+        <PersonalDetailsInnerContainerNative>
+          <GenericTextNative style={{ fontWeight: "600" }}>
+            Personal Details:
+          </GenericTextNative>
           <FormInput
             title="Name"
             value={name.value}
@@ -49,11 +51,13 @@ export const InputFormComponent = ({
             isValid={email.isValid}
             errorMessage={email.errorMessage}
           />
-        </PersonalDetailsInnerContainer>
-      </PersonalDetailsContainer>
-      <PaymentInformationContainer>
-        <PaymentInformationInnerContainer>
-          <Text style={{ fontWeight: "600" }}>Payment information:</Text>
+        </PersonalDetailsInnerContainerNative>
+      </PersonalDetailsContainerNative>
+      <PaymentInformationContainerNative>
+        <PaymentInformationInnerContainerNative>
+          <GenericTextNative style={{ fontWeight: "600" }}>
+            Payment information:
+          </GenericTextNative>
           <FormInput
             title="Card Details"
             value={cardDetails.value}
@@ -62,8 +66,8 @@ export const InputFormComponent = ({
             isValid={cardDetails.isValid}
             errorMessage={cardDetails.errorMessage}
           />
-        </PaymentInformationInnerContainer>
-      </PaymentInformationContainer>
+        </PaymentInformationInnerContainerNative>
+      </PaymentInformationContainerNative>
     </>
   );
 };

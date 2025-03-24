@@ -11,7 +11,7 @@
   "dependencies": {
     "@packages/hooks": "1.0.0",
     "@packages/types": "1.0.0",
-    "@packages/ui-components": "1.0.0",
+    "@packages/ui-components-web": "1.0.0",
     "next": "15.2.3",
     "next-transpile-modules": "^10.0.1",
     "react": "^19.0.0",

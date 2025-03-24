@@ -1,13 +1,13 @@
 "use client";
 
 import {
-  GenericButton,
-  GenericButtonWrapper,
-  MainContainerSuccess,
-  SuccessContainerTitleWrapper,
-  SuccessSubtitle,
-  SuccessTitle,
-} from "@packages/ui-components";
+  GenericButtonWeb,
+  GenericButtonWrapperWeb,
+  MainContainerSuccessWeb,
+  SuccessContainerTitleWrapperWeb,
+  SuccessSubtitleWeb,
+  SuccessTitleWeb,
+} from "@packages/ui-components-web";
 
 import { useRouter } from "next/navigation";
 import "./success.scss";
@@ -16,8 +16,7 @@ export default function SuccessPage() {
   const router = useRouter();
 
   return (
-    <MainContainerSuccess>
-      {/** TODO: Replace with CheckmarkSvg. The react-native-svg breaks web app */}
+    <MainContainerSuccessWeb style={{ height: "100%" }}>
       <div className="checkmark-container">
         <svg
           className="checkmark"
@@ -28,20 +27,21 @@ export default function SuccessPage() {
           <path className="checkmark-check" fill="none" d="M16 26l6 6 14-14" />
         </svg>
       </div>
-      <SuccessContainerTitleWrapper>
-        <SuccessTitle style={{ textAlign: "center" }}>
+      <SuccessContainerTitleWrapperWeb>
+        <SuccessTitleWeb style={{ textAlign: "center" }}>
           Success! Your Booking Has Been Successfully Placed
-        </SuccessTitle>
-        <SuccessSubtitle style={{ marginTop: 8, textAlign: "center" }}>
+        </SuccessTitleWeb>
+        <SuccessSubtitleWeb style={{ marginTop: 8, textAlign: "center" }}>
           You can return to the homepage and start again anytime.
-        </SuccessSubtitle>
-        <GenericButtonWrapper
+        </SuccessSubtitleWeb>
+        <GenericButtonWrapperWeb
           style={{ marginTop: 16 }}
-          onPress={() => router.back()}
+          onClick={() => router.back()}
+          isDisabled={false}
         >
-          <GenericButton>Return to Homepage</GenericButton>
-        </GenericButtonWrapper>
-      </SuccessContainerTitleWrapper>
-    </MainContainerSuccess>
+          <GenericButtonWeb>Return to Homepage</GenericButtonWeb>
+        </GenericButtonWrapperWeb>
+      </SuccessContainerTitleWrapperWeb>
+    </MainContainerSuccessWeb>
   );
 }

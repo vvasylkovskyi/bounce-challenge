@@ -1,17 +1,17 @@
+import { CheckoutSummaryComponent } from "@/components/checkout-summary-component";
+import { InputFormComponent } from "@/components/input-form-component";
+import { NumberOfBagsComponent } from "@/components/number-of-bags-component";
+import { ToggleSwitch } from "@/components/toggle-switch";
 import { useValidateForm } from "@packages/hooks";
 import { AppState } from "@packages/types";
 import {
-  CheckoutSummaryComponent,
-  InputFormComponent,
-  MainContainer,
-  MainContainerInnerWrapper,
-  MainContainerTitleWrapper,
-  NumberOfBagsComponent,
-  Subtitle,
-  Title,
-  ToggleSwitch,
-  ToggleSwitchWrapper,
-} from "@packages/ui-components";
+  MainContainerInnerWrapperNative,
+  MainContainerNative,
+  MainContainerTitleWrapperNative,
+  SubtitleNative,
+  TitleNative,
+  ToggleSwitchWrapperNative,
+} from "@packages/ui-components-native";
 import { router } from "expo-router";
 import { useCallback, useState } from "react";
 
@@ -105,12 +105,12 @@ export default function Index() {
     router,
   ]);
   return (
-    <MainContainer>
-      <MainContainerInnerWrapper>
-        <MainContainerTitleWrapper>
-          <Subtitle>Booking storage at: </Subtitle>
-          <Title>Cody's Cookie Store</Title>
-        </MainContainerTitleWrapper>
+    <MainContainerNative>
+      <MainContainerInnerWrapperNative>
+        <MainContainerTitleWrapperNative>
+          <SubtitleNative>Booking storage at: </SubtitleNative>
+          <TitleNative>Cody's Cookie Store</TitleNative>
+        </MainContainerTitleWrapperNative>
 
         <NumberOfBagsComponent
           numberOfBags={numberOfBags}
@@ -128,14 +128,14 @@ export default function Index() {
           }
         />
 
-        <ToggleSwitchWrapper>
+        <ToggleSwitchWrapperNative>
           <ToggleSwitch
             label={"Simulate Error"}
             isToggled={isSimulateErrorEnabled}
             onChange={(isToggled) => setIsSimulateErrorEnabled(isToggled)}
           />
-        </ToggleSwitchWrapper>
-      </MainContainerInnerWrapper>
+        </ToggleSwitchWrapperNative>
+      </MainContainerInnerWrapperNative>
 
       <CheckoutSummaryComponent
         onBook={handleOnBook}
@@ -143,6 +143,6 @@ export default function Index() {
         isSubmitting={isSubmitting}
         isError={isError}
       />
-    </MainContainer>
+    </MainContainerNative>
   );
 }

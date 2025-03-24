@@ -1,0 +1,11 @@
+{
+    "name": "@packages/ui-components-native",
+    "version": "1.0.0",
+    "main": "index.ts",
+    "private": true,
+    "dependencies": {
+        "@packages/ui-components-base-styles": "1.0.0",
+        "styled-components": "^6.1.16"
+    },
+    "devDependencies": {}
+}
