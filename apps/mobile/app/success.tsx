@@ -1,5 +1,3 @@
-"use client";
-
 import {
   GenericButton,
   GenericButtonWrapper,
@@ -8,26 +6,25 @@ import {
   SuccessSubtitle,
   SuccessTitle,
 } from "@packages/ui-components";
+import {
+  CheckmarkContainer,
+  CheckmarkSvg,
+  CheckmarkSvgCircle,
+  CheckmarkSvgPath,
+} from "@packages/ui-components/src/styles/checkmark-svg";
 
-import { useRouter } from "next/navigation";
-import "./success.scss";
+import { router } from "expo-router";
 
-export default function SuccessPage() {
-  const router = useRouter();
-
+export default function Success() {
   return (
     <MainContainerSuccess>
-      {/** TODO: Replace with CheckmarkSvg. The react-native-svg breaks web app */}
-      <div className="checkmark-container">
-        <svg
-          className="checkmark"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 52 52"
-        >
-          <circle className="checkmark-circle" cx="26" cy="26" r="25" />
-          <path className="checkmark-check" fill="none" d="M16 26l6 6 14-14" />
-        </svg>
-      </div>
+      <CheckmarkContainer>
+        <CheckmarkSvg>
+          <CheckmarkSvgCircle />
+          <CheckmarkSvgPath />
+        </CheckmarkSvg>
+      </CheckmarkContainer>
+
       <SuccessContainerTitleWrapper>
         <SuccessTitle style={{ textAlign: "center" }}>
           Success! Your Booking Has Been Successfully Placed

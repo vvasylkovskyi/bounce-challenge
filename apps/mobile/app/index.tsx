@@ -1,8 +1,19 @@
-import { CheckoutSummaryComponent } from "@/components/checkout-summary-component";
-import { useValidateForm } from "@/hooks/useValidateForm";
-import { AppState } from "@/types/types";
+import { useValidateForm } from "@packages/hooks";
+import { AppState } from "@packages/types";
+import {
+  CheckoutSummaryComponent,
+  InputFormComponent,
+  MainContainer,
+  MainContainerInnerWrapper,
+  MainContainerTitleWrapper,
+  NumberOfBagsComponent,
+  Subtitle,
+  Title,
+  ToggleSwitch,
+  ToggleSwitchWrapper,
+} from "@packages/ui-components";
+import { router } from "expo-router";
 import { useCallback, useState } from "react";
-import { Text, View } from "react-native";
 
 export default function Index() {
   const [isSimulateErrorEnabled, setIsSimulateErrorEnabled] = useState(false);
@@ -12,7 +23,7 @@ export default function Index() {
   const { checkFormValidity, validateIsRequired, markStateInvalid } =
     useValidateForm();
 
-  const [formState, setFormState] = useState<AppState>({
+  const initialState = {
     email: {
       value: "",
       isValid: false,
@@ -34,7 +45,9 @@ export default function Index() {
       validate: validateIsRequired,
       errorMessage: "Card details are required",
     },
-  });
+  };
+
+  const [formState, setFormState] = useState<AppState>(initialState);
 
   const handleOnChange = useCallback(
     (propertyKey: keyof AppState, value: string) => {
@@ -77,7 +90,8 @@ export default function Index() {
 
     setTimeout(() => {
       setIsError(false);
-      // router.push("/success");
+      setFormState(initialState);
+      router.push("/success");
     }, 2000);
   }, [
     checkFormValidity,
@@ -88,58 +102,40 @@ export default function Index() {
     isSimulateErrorEnabled,
     isSubmitting,
     isError,
-    // router,
+    router,
   ]);
-
-  //   return     <>
-  //   <div className="main-container__inner-wrapper">
-  //     <div className="main-container__title-wrapper">
-  //       <label className="text-md">Booking storage at: </label>
-  //       <h1 className="text-xl font-bold">Cody's Cookie Store</h1>
-  //     </div>
-
-  //     <NumberOfBagsComponent
-  //       numberOfBags={numberOfBags}
-  //       setNumberOfBags={setNumberOfBags}
-  //     />
-
-  //     <InputFormComponent
-  //       name={formState.name}
-  //       setName={(value: string) => handleOnChange("name", value)}
-  //       email={formState.email}
-  //       setEmail={(value: string) => handleOnChange("email", value)}
-  //       cardDetails={formState.cardDetails}
-  //       setCardDetails={(value: string) =>
-  //         handleOnChange("cardDetails", value)
-  //       }
-  //     />
-
-  //     <div className="toggle-switch__wrapper">
-  //       <ToggleSwitch
-  //         label={"Simulate Error"}
-  //         isToggled={isSimulateErrorEnabled}
-  //         onChange={(isToggled) => setIsSimulateErrorEnabled(isToggled)}
-  //       />
-  //     </div>
-  //   </div>
-  // <CheckoutSummaryComponent
-  //   onBook={handleOnBook}
-  //   numberOfBags={numberOfBags}
-  //   isSubmitting={isSubmitting}
-  //   isError={isError}
-  // />
-  // </>
-
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+    <MainContainer>
+      <MainContainerInnerWrapper>
+        <MainContainerTitleWrapper>
+          <Subtitle>Booking storage at: </Subtitle>
+          <Title>Cody's Cookie Store</Title>
+        </MainContainerTitleWrapper>
+
+        <NumberOfBagsComponent
+          numberOfBags={numberOfBags}
+          setNumberOfBags={setNumberOfBags}
+        />
+
+        <InputFormComponent
+          name={formState.name}
+          setName={(value: string) => handleOnChange("name", value)}
+          email={formState.email}
+          setEmail={(value: string) => handleOnChange("email", value)}
+          cardDetails={formState.cardDetails}
+          setCardDetails={(value: string) =>
+            handleOnChange("cardDetails", value)
+          }
+        />
+
+        <ToggleSwitchWrapper>
+          <ToggleSwitch
+            label={"Simulate Error"}
+            isToggled={isSimulateErrorEnabled}
+            onChange={(isToggled) => setIsSimulateErrorEnabled(isToggled)}
+          />
+        </ToggleSwitchWrapper>
+      </MainContainerInnerWrapper>
 
       <CheckoutSummaryComponent
         onBook={handleOnBook}
@@ -147,6 +143,6 @@ export default function Index() {
         isSubmitting={isSubmitting}
         isError={isError}
       />
-    </View>
+    </MainContainer>
   );
 }

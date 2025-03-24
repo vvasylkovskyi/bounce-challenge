@@ -1,13 +1,26 @@
 "use client";
 
-import { CheckoutSummaryComponent } from "@/components/checkout-summary-component";
-import { InputFormComponent } from "@/components/input-form-component";
-import { NumberOfBagsComponent } from "@/components/number-of-bags-component";
-import ToggleSwitch from "@/components/toggle-switch";
-import { useValidateForm } from "@/hooks/useValidateForm";
-import { AppState } from "@/types/types";
+import { useValidateForm } from "@packages/hooks";
+import { AppState } from "@packages/types";
+import {
+  CheckoutSummaryComponent,
+  InputFormComponent,
+  MainContainer,
+  MainContainerInnerWrapper,
+  MainContainerTitleWrapper,
+  NumberOfBagsComponent,
+  Subtitle,
+  Title,
+  ToggleSwitch,
+  ToggleSwitchWrapper,
+} from "@packages/ui-components";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
+import styled from "styled-components/native";
+
+const Container = styled.View`
+  background: red;
+`;
 
 export default function Home() {
   const router = useRouter();
@@ -99,43 +112,48 @@ export default function Home() {
   ]);
 
   return (
-    <>
-      <div className="main-container__inner-wrapper">
-        <div className="main-container__title-wrapper">
-          <label className="text-md">Booking storage at: </label>
-          <h1 className="text-xl font-bold">Cody's Cookie Store</h1>
-        </div>
+    <Container>
+      <MainContainer>
+        <MainContainerInnerWrapper>
+          <MainContainerTitleWrapper>
+            <Subtitle>Booking storage at: </Subtitle>
+            <Title>Cody's Cookie Store</Title>
+          </MainContainerTitleWrapper>
 
-        <NumberOfBagsComponent
-          numberOfBags={numberOfBags}
-          setNumberOfBags={setNumberOfBags}
-        />
+          <NumberOfBagsComponent
+            numberOfBags={numberOfBags}
+            setNumberOfBags={setNumberOfBags}
+          />
 
-        <InputFormComponent
-          name={formState.name}
-          setName={(value: string) => handleOnChange("name", value)}
-          email={formState.email}
-          setEmail={(value: string) => handleOnChange("email", value)}
-          cardDetails={formState.cardDetails}
-          setCardDetails={(value: string) =>
-            handleOnChange("cardDetails", value)
-          }
-        />
+          <InputFormComponent
+            name={formState.name}
+            setName={(value: string) => handleOnChange("name", value)}
+            email={formState.email}
+            setEmail={(value: string) => handleOnChange("email", value)}
+            cardDetails={formState.cardDetails}
+            setCardDetails={(value: string) =>
+              handleOnChange("cardDetails", value)
+            }
+          />
 
-        <div className="toggle-switch__wrapper">
-          <ToggleSwitch
-            label={"Simulate Error"}
-            isToggled={isSimulateErrorEnabled}
-            onChange={(isToggled) => setIsSimulateErrorEnabled(isToggled)}
+          <ToggleSwitchWrapper>
+            <ToggleSwitch
+              label={"Simulate Error"}
+              isToggled={isSimulateErrorEnabled}
+              onChange={(isToggled) => setIsSimulateErrorEnabled(isToggled)}
+            />
+          </ToggleSwitchWrapper>
+        </MainContainerInnerWrapper>
+
+        <div style={{ marginTop: "16px", width: "100%" }}>
+          <CheckoutSummaryComponent
+            onBook={handleOnBook}
+            numberOfBags={numberOfBags}
+            isSubmitting={isSubmitting}
+            isError={isError}
           />
         </div>
-      </div>
-      <CheckoutSummaryComponent
-        onBook={handleOnBook}
-        numberOfBags={numberOfBags}
-        isSubmitting={isSubmitting}
-        isError={isError}
-      />
-    </>
+      </MainContainer>
+    </Container>
   );
 }

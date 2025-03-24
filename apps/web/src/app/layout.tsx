@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.scss";
+import { StyledComponentsRegistry } from "./registry";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,21 +17,30 @@ export const metadata: Metadata = {
   description: "Bounce Interview Challenge app",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        height: "100%",
+      }}
+    >
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        style={{
+          maxWidth: "600px",
+          width: "-webkit-fill-available",
+        }}
       >
-        <div className="main-container__wrapper font-[family-name:var(--font-geist-sans)]">
-          <main className="main-container flex flex-col row-start-2 items-center sm:items-start">
-            {children}
-          </main>
-        </div>
+        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>
     </html>
   );

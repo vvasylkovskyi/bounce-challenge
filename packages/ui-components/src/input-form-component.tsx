@@ -1,7 +1,14 @@
 "use client";
 
-import { FormInputItemState } from "@/types/types";
+import { FormInputItemState } from "@packages/types";
+import { Text } from "react-native";
 import { FormInput } from "./form-input";
+import {
+  PaymentInformationContainer,
+  PaymentInformationInnerContainer,
+  PersonalDetailsContainer,
+  PersonalDetailsInnerContainer,
+} from "./styles/styles";
 
 type InputFormComponentProps = {
   name: FormInputItemState;
@@ -22,10 +29,9 @@ export const InputFormComponent = ({
 }: InputFormComponentProps) => {
   return (
     <>
-      <div className="personal-details__container">
-        <div className="personal-details__inner-container">
-          <label className="font-bold">Personal Details:</label>
-
+      <PersonalDetailsContainer>
+        <PersonalDetailsInnerContainer>
+          <Text style={{ fontWeight: "600" }}>Personal Details:</Text>
           <FormInput
             title="Name"
             value={name.value}
@@ -43,13 +49,11 @@ export const InputFormComponent = ({
             isValid={email.isValid}
             errorMessage={email.errorMessage}
           />
-        </div>
-      </div>
-
-      <div className="payment-information__container">
-        <div className="payment-information__inner-container">
-          <label className="font-bold">Payment information: </label>
-
+        </PersonalDetailsInnerContainer>
+      </PersonalDetailsContainer>
+      <PaymentInformationContainer>
+        <PaymentInformationInnerContainer>
+          <Text style={{ fontWeight: "600" }}>Payment information:</Text>
           <FormInput
             title="Card Details"
             value={cardDetails.value}
@@ -58,8 +62,8 @@ export const InputFormComponent = ({
             isValid={cardDetails.isValid}
             errorMessage={cardDetails.errorMessage}
           />
-        </div>
-      </div>
+        </PaymentInformationInnerContainer>
+      </PaymentInformationContainer>
     </>
   );
 };

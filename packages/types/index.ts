@@ -24,5 +24,5 @@ export type AppState = {
     email: FormInputItemState;
     name: FormInputItemState;
     cardDetails: FormInputItemState;
-  };
+};
   

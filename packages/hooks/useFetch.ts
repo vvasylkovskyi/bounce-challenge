@@ -1,4 +1,4 @@
-import { GenericResponse } from "@/types/types";
+import { GenericResponse } from "@packages/types";
 import { useEffect, useState } from "react";
 
 

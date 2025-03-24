@@ -1,5 +1,5 @@
 
-import { GenericResponse, TotalPriceResponse } from "@/types/types";
+import { GenericResponse, TotalPriceResponse } from "@packages/types";
 import { useFetch } from "./useFetch";
 
 

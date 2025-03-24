@@ -1,5 +1,15 @@
-import { useTotalPrice } from "@/hooks/useTotalPrice";
+import { useTotalPrice } from "@packages/hooks/useTotalPrice";
 import { useEffect, useState } from "react";
+import { View } from "react-native";
+import {
+  CheckoutSummaryContainer,
+  CheckoutSummaryInnerContainer,
+  CheckoutSummaryOuterContainer,
+  ErrorContainer,
+  ErrorContainerText,
+  GenericButton,
+  GenericButtonWrapper,
+} from "./styles/styles";
 
 function toDecimalString(num: number): string {
   return (num / 100).toFixed(2).replace(".", ",");
@@ -35,19 +45,15 @@ export const CheckoutSummaryComponent = ({
 
   let buttonContent: React.ReactNode = `Book ${numberOfBagsLabel} $${totalPriceStr}`;
   if (Boolean(errorDetail)) {
-    buttonContent = errorDetail;
+    buttonContent = errorDetail || "";
   }
 
   if (isLoading) {
-    buttonContent = <span className="spinner"></span>;
+    buttonContent = "Loading...";
   }
 
   if (isSubmitting) {
-    buttonContent = (
-      <div>
-        Placing Booking... <span className="spinner"></span>
-      </div>
-    );
+    buttonContent = "Placing Booking...";
   }
 
   if (isError) {
@@ -64,23 +70,25 @@ export const CheckoutSummaryComponent = ({
   }
 
   return (
-    <div className="checkout-summary__outer-container">
+    <CheckoutSummaryOuterContainer>
       {errorMessage && (
-        <div className="error-container error-text">{errorMessage}</div>
+        <ErrorContainer>
+          <ErrorContainerText>{errorMessage}</ErrorContainerText>
+        </ErrorContainer>
       )}
-      <div className="checkout-summary__container">
-        <div className="checkout-summary__inner-container">
-          <div className="w-full">
-            <button
-              className={`generic-button w-full`}
-              onClick={onBook}
-              disabled={isLoading || Boolean(errorDetail) || isSubmitting}
+
+      <CheckoutSummaryContainer>
+        <CheckoutSummaryInnerContainer>
+          <View style={{ width: "100%", marginBottom: 16 }}>
+            <GenericButtonWrapper
+              onPress={onBook}
+              isDisabled={isLoading || Boolean(errorDetail) || isSubmitting}
             >
-              {buttonContent}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+              <GenericButton>{buttonContent}</GenericButton>
+            </GenericButtonWrapper>
+          </View>
+        </CheckoutSummaryInnerContainer>
+      </CheckoutSummaryContainer>
+    </CheckoutSummaryOuterContainer>
   );
 };

@@ -1,4 +1,4 @@
-import { AppState } from "@/types/types";
+import { AppState } from "@packages/types";
 
 
 

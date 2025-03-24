@@ -1,4 +1,4 @@
-import { GenericResponse, TotalPriceResponse } from "@/types/types";
+import { GenericResponse, TotalPriceResponse } from "@packages/types";
 
 const baseUrl = "https://fullstack-challenge-api.usebounce.io/v1/pricing/calculate";
 const pricePerBag = 59;
