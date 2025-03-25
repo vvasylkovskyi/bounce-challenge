@@ -1,7 +1,3 @@
-import { CheckoutSummaryComponent } from "@/components/checkout-summary-component";
-import { InputFormComponent } from "@/components/input-form-component";
-import { NumberOfBagsComponent } from "@/components/number-of-bags-component";
-import { ToggleSwitch } from "@/components/toggle-switch";
 import { useValidateForm } from "@packages/hooks";
 import { AppState } from "@packages/types";
 import {
@@ -13,7 +9,11 @@ import {
   ToggleSwitchWrapperNative,
 } from "@packages/ui-components-native";
 import { router } from "expo-router";
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
+import { CheckoutSummaryComponent } from "../components/checkout-summary-component";
+import { InputFormComponent } from "../components/input-form-component";
+import { NumberOfBagsComponent } from "../components/number-of-bags-component";
+import { ToggleSwitch } from "../components/toggle-switch";
 
 export default function Index() {
   const [isSimulateErrorEnabled, setIsSimulateErrorEnabled] = useState(false);
@@ -23,29 +23,32 @@ export default function Index() {
   const { checkFormValidity, validateIsRequired, markStateInvalid } =
     useValidateForm();
 
-  const initialState = {
-    email: {
-      value: "",
-      isValid: false,
-      isDirty: false,
-      validate: validateIsRequired,
-      errorMessage: "Email is required",
-    },
-    name: {
-      value: "",
-      isValid: false,
-      isDirty: false,
-      validate: validateIsRequired,
-      errorMessage: "Name is required",
-    },
-    cardDetails: {
-      value: "",
-      isValid: false,
-      isDirty: false,
-      validate: validateIsRequired,
-      errorMessage: "Card details are required",
-    },
-  };
+  const initialState = useMemo(
+    () => ({
+      email: {
+        value: "",
+        isValid: false,
+        isDirty: false,
+        validate: validateIsRequired,
+        errorMessage: "Email is required",
+      },
+      name: {
+        value: "",
+        isValid: false,
+        isDirty: false,
+        validate: validateIsRequired,
+        errorMessage: "Name is required",
+      },
+      cardDetails: {
+        value: "",
+        isValid: false,
+        isDirty: false,
+        validate: validateIsRequired,
+        errorMessage: "Card details are required",
+      },
+    }),
+    [validateIsRequired]
+  );
 
   const [formState, setFormState] = useState<AppState>(initialState);
 
@@ -62,12 +65,7 @@ export default function Index() {
         },
       }));
     },
-    [
-      numberOfBags,
-      formState.name.value,
-      formState.email.value,
-      formState.cardDetails.value,
-    ]
+    [formState]
   );
 
   const handleOnBook = useCallback(async () => {
@@ -95,14 +93,10 @@ export default function Index() {
     }, 2000);
   }, [
     checkFormValidity,
-    setIsError,
-    setIsSubmitting,
-    markStateInvalid,
     formState,
     isSimulateErrorEnabled,
-    isSubmitting,
-    isError,
-    router,
+    markStateInvalid,
+    initialState,
   ]);
   return (
     <MainContainerNative>

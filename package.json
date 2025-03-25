@@ -1,19 +1,22 @@
 {
-    "name": "bounce-challenge",
-    "version": "1.0.0",
-    "description": "Bounce Challenge Web and Mobile",
-    "author": "Viktor Vasylkovskyi",
-    "private": true,
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/vvasylkovskyi/bounce-challenge"
-    },
-    "scripts": {},
-    "devDependencies": {},
-    "workspaces": {
-        "packages": [
-            "packages/**/**",
-            "apps/**/**"
-        ]
-    }
+  "name": "bounce-challenge",
+  "version": "1.0.0",
+  "description": "Bounce Challenge Web and Mobile",
+  "author": "Viktor Vasylkovskyi",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vvasylkovskyi/bounce-challenge"
+  },
+  "scripts": {},
+  "devDependencies": {},
+  "workspaces": {
+    "packages": [
+      "packages/**/**",
+      "apps/**/**"
+    ]
+  },
+  "dependencies": {
+    "expo-dev-client": "~5.0.14"
+  }
 }
